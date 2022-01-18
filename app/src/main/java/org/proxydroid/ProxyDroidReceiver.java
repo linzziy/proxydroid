@@ -42,8 +42,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 public class ProxyDroidReceiver extends BroadcastReceiver {
 
@@ -76,7 +78,17 @@ public class ProxyDroidReceiver extends BroadcastReceiver {
 			bundle.putInt("port", mProfile.getPort());
 
 			it.putExtras(bundle);
-			context.startService(it);
+
+			Log.d("ConnectivityBroadcast", "onReceive: ConnectivityBroadcastReceiver-----OK");
+
+			it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+				context.startForegroundService(it);
+			} else {
+				context.startService(it);
+			}
+			//context.startService(it);
 		}
 	}
 

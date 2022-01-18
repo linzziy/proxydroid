@@ -49,6 +49,7 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.ksmaze.android.preference.ListPreferenceMultiSelect;
 
@@ -64,6 +65,7 @@ public class ConnectivityBroadcastReceiver extends BroadcastReceiver {
   @Override
   public void onReceive(final Context context, final Intent intent) {
 
+    Log.d("ConnectivityBroadcast", "onReceive: ConnectivityBroadcastReceiver");
     if (Utils.isConnecting()) return;
 
     if (!intent.getAction().equals(ConnectivityManager.CONNECTIVITY_ACTION)) return;

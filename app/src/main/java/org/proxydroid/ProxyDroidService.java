@@ -540,6 +540,13 @@ public class ProxyDroidService extends Service {
                 getString(R.string.profile_base) + " " + settings.getString("profile", "1"));
     }
 
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+
+        this.onStart(intent, startId);
+        return super.onStartCommand(intent, flags, startId);
+    }
+
     // This is the old onStart method that will be called on the pre-2.0
     // platform. On 2.0 or later we override onStartCommand() so this
     // method will not be called.
